@@ -1,14 +1,13 @@
 ﻿/*!
  * Excolo Slider - A simple jquery slider
  *
- * Examples and documentation at: 
- * http://excolo.github.io/Excolo-Slider/
  *
- * Author: Nikolaj Dam Larsen
- * Version: 1.0.5 (30-JUNE-2013)
+ * Author: Nikolaj Dam Larsen v1.0.5
+ * Author: Elnur Kurtaliev after v1.0.5
+ * Version: 1.1 (30-September-2013)
  *
  * Released under the MIT license
- * https://github.com/Excolo/ExcoloSlider/blob/master/MIT-LICENSE
+ * https://github.com/EL-shadow/ExcoloSlider/blob/master/MIT-LICENSE
  */
 ; (function ($, window, document, undefined) {
     var Plugin;
@@ -73,6 +72,8 @@
             base = this;
             // Introduce defaults that can be extended either globally or using an object literal. 
             base.config = $.extend({}, base.defaults, base.options, base.metadata);
+			base.actionClick={action:false,x:0,y:0};
+			base.currClick={x:0,y:0};
 
             // Initialize plugin data
             base.data = $.data(base);
@@ -203,15 +204,28 @@
                     var eventData = e.originalEvent.touches[0];
                     e.preventDefault();
                     base._onMoveStart(eventData.pageX, eventData.pageY);
+					base.actionClick.x=base.currClick.x=eventData.pageX;
+					base.actionClick.y=base.currClick.y=eventData.pageY;
+					base.actionClick.action=true;
                     return e.stopPropagation();
                 });
                 $container.on("touchmove", function (e) {
                     var eventData = e.originalEvent.touches[0];
                     e.preventDefault();
+					base.actionClick.action=false;
                     base._onMove(eventData.pageX, eventData.pageY);
+					base.currClick.x=eventData.pageX;
+                    base.currClick.y=eventData.pageY;
                     return e.stopPropagation();
                 });
                 $container.on("touchend", function (e) {
+					if ((base.actionClick.action==true)&&(base.actionClick.x==base.currClick.x)&&(base.actionClick.y==base.currClick.y)){
+                        //alert('is tap');
+                        var href=$container.find("."+base.config.activeSlideClass+" a").attr("href");
+                        if ((href!=undefined)&&(href!="")){
+                            window.location=href;
+                        }
+					}
                     e.preventDefault();
                     base._onMoveEnd();
                     return e.stopPropagation();
@@ -223,6 +237,9 @@
                 $container.on("dragstart", function (e) { return false; });
                 $container.on("mousedown", function (e) {
                     base._onMoveStart(e.clientX, e.clientY);
+					base.actionClick.x=e.clientX;
+					base.actionClick.y=e.clientY;
+					base.actionClick.action=false;
 
                     $(window).attr('unselectable', 'on').on('selectstart', false).css('user-select', 'none').css('UserSelect', 'none').css('MozUserSelect', 'none');
                     return e.stopPropagation();
@@ -235,10 +252,26 @@
                 // The mouseup event should also work outside the slide-wrapper container
                 $(window).on("mouseup", function (e) {
                     base._onMoveEnd();
+					if ((base.actionClick.x==e.clientX)&&(base.actionClick.y==e.clientY)){
+						base.actionClick.action=true;
+					}
 
                     $(window).removeAttr('unselectable').unbind('selectstart').css('user-select', null).css('UserSelect', null).css('MozUserSelect', null);
                     return e.stopPropagation();
                 });
+				//ie7 and ie8 support
+                $container.on("mouseup", function (e) {
+                    if ((base.actionClick.x==e.clientX)&&(base.actionClick.y==e.clientY)){
+						base.actionClick.action=true;
+					}
+                });
+				//prevet click action on link if mouse drag
+				$container.on("click", function (e) {
+                    if (base.actionClick.action!=true){
+                        e.stopPropagation();
+						e.preventDefault();
+					}
+				});
             }
 
             // Auto-size before preparing slides
@@ -667,12 +700,12 @@
             // Align slides according to bufferShortage
             for (i = 0; i < Math.abs(bufferShortage); i++) {
                 // Find the element with the lowest left position
-                lowest = [].reduce.call($slides, function (sml, cur) {
-                    return $(sml).offset().left < $(cur).offset().left ? sml : cur;
-                });
-                // Find the element with the highest left position
-                highest = [].reduce.call($slides, function (sml, cur) {
-                    return $(sml).offset().left > $(cur).offset().left ? sml : cur;
+				// Find the element with the highest left position
+                var lowest=$slides[0];
+				var highest=$slides[0];
+                $.each($slides,function(i,elem){
+                    lowest=$(lowest).offset().left < $(elem).offset().left ? lowest : elem;
+					highest=$(highest).offset().left > $(elem).offset().left ? highest : elem;
                 });
 
                 if(bufferShortage > 0)
