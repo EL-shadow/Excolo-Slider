@@ -18,18 +18,13 @@ Features:
 - Play the slideshow backwards
 - Auto adjust size initially and on browser resize, for responsive designs
 - Touch enabled (limited to a few browsers)
-- IE6, IE7, IE8, IE9, IE10 - compatible
 
 Most of these features can be configured and turned off, when setting up the slider. 
 
+- IE6, IE7, IE8, IE9, IE10 - compatible
 
 Installation
 ============
-Installation can be done using NuGet Package Manager, 
-either by using the console, as seen below, or by searching for the package in the Visual Studio package explorer:
-```
-PM> Install-Package excolo-slider
-```
 Then in the header of your website, you insert the references to jquery and the slider plugin:
 ```html
 <script src="Scripts/jquery-1.9.1.min.js"></script>
@@ -63,9 +58,6 @@ $(function () {
 });
 ```
 
-For installation without NuGet see [our GitHub page](http://excolo.github.io/Excolo-Slider/)
-
-
 Configuration
 ============
 Configuration can be seen on [our GitHub page](http://excolo.github.io/Excolo-Slider/)
@@ -78,6 +70,10 @@ Examples can be seen on [our GitHub page](http://excolo.github.io/Excolo-Slider/
 
 Change Log
 ============
+2013-09-30 - **v1.1.1**
+
+* fix drag/swipe issue when slides count less 4 ([EL-shadow](https://github.com/EL-shadow))
+
 2013-09-30 - **v1.1**
 
 * fix IE bugs, add click-tap functions ([EL-shadow](https://github.com/EL-shadow))

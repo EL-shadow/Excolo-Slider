@@ -4,7 +4,7 @@
  *
  * Author: Nikolaj Dam Larsen v1.0.5
  * Author: Elnur Kurtaliev after v1.0.5
- * Version: 1.1 (30-September-2013)
+ * Version: 1.1.1 (01-October-2013)
  *
  * Released under the MIT license
  * https://github.com/EL-shadow/ExcoloSlider/blob/master/MIT-LICENSE
@@ -124,6 +124,8 @@
                 // Bind click event to buttons
                 $prev.on("click", function (e) { base.previous(); });
                 $next.on("click", function (e) { base.next(); });
+                $prev.on("touchstart", function (e) {e.stopPropagation(); });
+                $next.on("touchstart", function (e) {e.stopPropagation(); });
             }
 
             // Add pager navigation
@@ -635,7 +637,7 @@
             }
 
             // Align the slides to prepare for the next slide
-            base._alignSlides(leftPos);
+            //base._alignSlides(leftPos);
 
             // We're no longer moving and touching
             $.data(base, "isMoving", false);
@@ -691,8 +693,8 @@
                     bufferLength++;
             });
             // Calculate how much short on buffer we are
-            bufferShortage = half - bufferLength;
 
+            bufferShortage = half - bufferLength;
             // We're sliding the other direction thus moving a buffer to the other side
             if (bufferShortage < 0)
                 bufferShortage = base.data.totalslides % 2 == 0 ? bufferShortage + 1 : bufferShortage;

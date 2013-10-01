@@ -36,21 +36,10 @@
         $(function () {
             $("#sliderA").excoloSlider();
             $("#sliderB").excoloSlider();
-            $("#sliderC").excoloSlider(
-				
-			);
+            $("#sliderC").excoloSlider();
+            $("#sliderD").excoloSlider();
         });
     </script>
-	<style>
-	#sliderC a{
-		width:100%;
-		height:100%;
-		display:block;
-	}
-	#sliderC img{
-		width:100%;
-	}
-	</style>
 </head>
 <body>
     <header>
@@ -169,14 +158,12 @@
 	<div class="h20"></div>
 	<div class="container_12">
 		<div class="grid_8">
-		
 			<ul id="sliderC" class="slider">
-				<li><a href="http://google.com"><img src="Images/logo1.png" alt=""></a></li>
-				<li><a href="http://yandex.com"><img src="Images/logo2.png" alt=""></a></li>
-				<li><a href="http://fb.com"><img src="Images/logo3.png" alt=""></a></li>
-				<li><a href="http://twitter.com"><img src="Images/logo4.png" alt=""></a></li>
+                <li><a href="http://google.com"><img src="Images/logo1.png" alt=""></a></li>
+                <li><a href="http://yandex.com"><img src="Images/logo2.png" alt=""></a></li>
+                <li><a href="http://fb.com"><img src="Images/logo3.png" alt=""></a></li>
+                <!--<li><a href="http://twitter.com"><img src="Images/logo4.png" alt=""></a></li>-->
 			</ul>
-			
 			<div class="h10"></div>
 			
 		</div>
@@ -201,17 +188,6 @@
             
 		    <div class="h10"></div>
 
-			<h3>CSS:</h3>
-            <code class="brush: css; toolbar: false;">
-                #sliderC a{
-					width:100%;
-					height:100%;
-					display:block;
-				}
-				#sliderC img{
-					width:100%;
-				}
-            </code>
 			<h3>Setup:</h3>
             <code class="brush: js; toolbar: false;">
                 $(function () {
@@ -221,6 +197,62 @@
 
 		</div>
 		
+		<div class="h20"></div>
+
+	</div>
+	<div class="h20"></div>
+	<div class="container_12">
+		<div class="grid_8">
+		    <div class="testSize" style="width:240px;">
+			<ul id="sliderD" class="slider">
+                <li><a href="http://google.com"><img src="Images/logo1.png" alt=""></a></li>
+                <li><a href="http://yandex.com"><img src="Images/logo2.png" alt=""></a></li>
+                <li><a href="http://fb.com"><img src="Images/logo3.png" alt=""></a></li>
+                <!--<li><a href="http://twitter.com"><img src="Images/logo4.png" alt=""></a></li>-->
+			</ul>
+            </div>
+			<div class="h10"></div>
+
+		</div>
+
+		<div class="grid_4">
+			<h2>Default Slider with &lt;a&gt; Carousel</h2>
+			<p>This slider is setup with default settings, but using LI elements for slides instead of hyperlink A and IMG elements.</p>
+
+			<ul>
+				<li>Auto Play is on</li>
+				<li>Auto Size is on</li>
+				<li>Repeat is on</li>
+				<li>Prev/next navigation buttons are on</li>
+				<li>Prev/next navigation autohide is on</li>
+				<li>Touch navigation is on</li>
+				<li>Mouse navigation is on</li>
+				<li>Pause on hover is on</li>
+				<li>CSS3 transitions is on</li>
+				<li>Delay is 0ms</li>
+				<li>Slide interval is 3000ms (3s)</li>
+			</ul>
+
+		    <div class="h10"></div>
+
+			<h3>Setup:</h3>
+            <pre>
+&lt;div class="testSize" style="width:240px;">
+    &lt;ul id="sliderC" class="slider">
+    &lt;li>&lt;a href="#1">&lt;img src="l1.png">&lt;/a>&lt;/li>
+    &lt;li>&lt;a href="#2">&lt;img src="l2.png">&lt;/a>&lt;/li>
+    &lt;li>&lt;a href="#3">&lt;img src="l3.png">&lt;/a>&lt;/li>
+    &lt;/ul>
+&lt;/div>
+            </pre>
+            <code class="brush: js; toolbar: false;">
+                $(function () {
+                    $("#sliderD").excoloSlider();
+                });
+            </code>
+
+		</div>
+
 		<div class="h20"></div>
 
 	</div>
@@ -237,7 +269,7 @@
 		<div class="h20"></div>
 
 	</div>
-	
+
 
     <script type="text/javascript">
         /*
