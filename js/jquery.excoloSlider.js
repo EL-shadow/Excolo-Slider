@@ -688,7 +688,7 @@
             // If our buffer is below half the total $slides, we need to increase it.
             bufferLength = 0;
             $slides.each(function () {
-                var l = $(this).position().left;
+                var l = Math.round($(this).position().left);
                 if (l > goalPosition - width)
                     bufferLength++;
             });
