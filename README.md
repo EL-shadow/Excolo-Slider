@@ -70,6 +70,11 @@ Examples can be seen on [our GitHub page](http://excolo.github.io/Excolo-Slider/
 
 Change Log
 ============
+2013-11-07 - **v1.1.2**
+
+* resolve container left position overloading ([EL-shadow](https://github.com/EL-shadow))
+* fix alignment bug with fraction size ([EL-shadow](https://github.com/EL-shadow))
+
 2013-09-30 - **v1.1.1**
 
 * fix drag/swipe issue when slides count less 4 ([EL-shadow](https://github.com/EL-shadow))

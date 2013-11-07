@@ -3,8 +3,8 @@
  *
  *
  * Author: Nikolaj Dam Larsen v1.0.5
- * Author: Elnur Kurtaliev after v1.0.5
- * Version: 1.1.1 (01-October-2013)
+ * Author: Elnur Kurtaliev from v1.0.5
+ * Version: 1.1.2 (07-November-2013)
  *
  * Released under the MIT license
  * https://github.com/EL-shadow/ExcoloSlider/blob/master/MIT-LICENSE
@@ -689,7 +689,7 @@
             bufferLength = 0;
             $slides.each(function () {
                 var l = Math.round($(this).position().left);
-                if (l > goalPosition - width)
+                if (l > Math.round(goalPosition - width))
                     bufferLength++;
             });
             // Calculate how much short on buffer we are
@@ -733,6 +733,26 @@
             $container = $(".slide-wrapper", base.$elem);
             $slides = $container.children();
             $slide = $container.children(":eq(" + nextSlideIndex + ")");
+
+
+            //Fix position overloading
+            var prefix = base.data.browserEnginePrefix.css;
+            var transform = prefix + "Transform";
+            var duration = prefix + "TransitionDuration";
+            if ((base.data.currentSlide==0)&&(Math.abs(nextSlideIndex)==1)){
+                var shift=$($slides[base.data.currentSlide]).position().left;
+                $slides.each(function(){
+                    $(this).css("left",$(this).position().left-shift);
+                });
+
+                if (base.config.animationCssTransitions && base.data.browserEnginePrefix) {
+                    $container[0].style[duration] = "0ms";
+                    $container[0].style[transform] = "translateX(" + 0 + "px)";
+                }
+                else{
+                    $container.offset().left=0;
+                }
+            }
 
             // Get the position of the slide we are heading for
             leftPos = Math.round($slide.position().left);
