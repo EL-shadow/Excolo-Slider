@@ -222,8 +222,7 @@
                 });
                 $container.on("touchend", function (e) {
 					if ((base.actionClick.action==true)&&(base.actionClick.x==base.currClick.x)&&(base.actionClick.y==base.currClick.y)){
-                        //alert('is tap');
-                        var href=$container.find("."+base.config.activeSlideClass+" a").attr("href");
+                        var href=$container.find("."+base.config.activeSlideClass+" a, a."+base.config.activeSlideClass).attr("href");
                         if ((href!=undefined)&&(href!="")){
                             window.location=href;
                         }
