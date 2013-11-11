@@ -468,7 +468,7 @@
             if (base.config.animationCssTransitions && base.data.browserEnginePrefix) {
                 base._transition((-leftPos), 0);
             } else {
-                $container.position().left = -leftPos;
+                $container.css("left",-leftPos);
             }
 
             // Align the slides to prepare for next transition
@@ -739,7 +739,7 @@
             var prefix = base.data.browserEnginePrefix.css;
             var transform = prefix + "Transform";
             var duration = prefix + "TransitionDuration";
-            if ((base.data.currentSlide==0)&&(Math.abs(nextSlideIndex)==1)){
+            if ((base.data.currentSlide==0)&&(Math.abs(nextSlideIndex)==1)&&(!base.data.isMoving)){
                 var shift=$($slides[base.data.currentSlide]).position().left;
                 $slides.each(function(){
                     $(this).css("left",$(this).position().left-shift);
@@ -750,7 +750,7 @@
                     $container[0].style[transform] = "translateX(" + 0 + "px)";
                 }
                 else{
-                    $container.offset().left=0;
+                    $container.css("left",0);
                 }
             }
 

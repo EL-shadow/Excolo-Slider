@@ -31,6 +31,7 @@
     background: linear-gradient(to right,  rgba(255,255,255,0.8) 0%,rgba(255,255,255,0.8) 100%); /* W3C */
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ccffffff', endColorstr='#ccffffff',GradientType=1 ); /* IE6-9 */
     padding: 0px;
+    z-index:11;
 }
 
 .slider .slide-prev {
