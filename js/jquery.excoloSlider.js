@@ -56,12 +56,12 @@
             animationTimingFunction: "linear",
             prevButtonClass: "slide-prev",
             nextButtonClass: "slide-next",
-            prevButtonImage: "Images/prev.png",
-            nextButtonImage: "Images/next.png",
+            prevButtonImage: "images/prev.png",
+            nextButtonImage: "images/next.png",
             activeSlideClass: "es-active",
             slideCaptionClass: "es-caption",
             pagerClass: "es-pager",
-            pagerImage: "Images/pagericon.png"
+            pagerImage: "images/pagericon.png"
         },
 
         /* Initialization function
