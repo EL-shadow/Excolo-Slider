@@ -124,8 +124,11 @@
                 // Bind click event to buttons
                 $prev.on("click", function (e) { base.previous(); });
                 $next.on("click", function (e) { base.next(); });
-                $prev.on("touchstart", function (e) {e.stopPropagation(); });
-                $next.on("touchstart", function (e) {e.stopPropagation(); });
+                $prev.on("touchstart", function (e) {
+                    e.preventDefault(); e.stopPropagation(); });
+                $next.on("touchstart", function (e) { e.preventDefault(); e.stopPropagation(); });
+                $prev.on("touchend", function (e) { e.stopPropagation(); base.previous(); });
+                $next.on("touchend", function (e) { e.stopPropagation(); base.next(); });
             }
 
             // Add pager navigation
@@ -280,7 +283,7 @@
             {
                 setTimeout(function () { base._resize(); }, 50)
                 // Setup resize event handler
-                $(window).resize(function () {
+                $(window).on("orientationchange resize",function () {
                     // The timeout is to let other resize events finish
                     // e.g. if using adapt.js
                     // This will make it flicker momentarily when resizing
