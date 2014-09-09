@@ -74,6 +74,7 @@
             base.config = $.extend({}, base.defaults, base.options, base.metadata);
 			base.actionClick={action:false,x:0,y:0};
 			base.currClick={x:0,y:0};
+            base.scroll=null;
 
             // Initialize plugin data
             base.data = $.data(base);
@@ -207,21 +208,30 @@
             if (base.config.touchNav) {
                 $container.on("touchstart", function (e) {
                     var eventData = e.originalEvent.touches[0];
-                    e.preventDefault();
                     base._onMoveStart(eventData.pageX, eventData.pageY);
 					base.actionClick.x=base.currClick.x=eventData.pageX;
 					base.actionClick.y=base.currClick.y=eventData.pageY;
 					base.actionClick.action=true;
-                    return e.stopPropagation();
+                    base.scroll=null;
                 });
                 $container.on("touchmove", function (e) {
                     var eventData = e.originalEvent.touches[0];
-                    e.preventDefault();
-					base.actionClick.action=false;
-                    base._onMove(eventData.pageX, eventData.pageY);
-					base.currClick.x=eventData.pageX;
+                    base.currClick.x=eventData.pageX;
                     base.currClick.y=eventData.pageY;
-                    return e.stopPropagation();
+                    if (base.scroll==null){
+                        var dx = Math.abs(base.actionClick.x-base.currClick.x);
+                        var dy = Math.abs(base.actionClick.y-base.currClick.y);
+                        if (dx<dy){
+                            base.scroll=true;
+                        }
+                        else{base.scroll=false;}
+                    }
+                    if (!base.scroll){
+                        e.preventDefault();
+                        base.actionClick.action=false;
+                        base._onMove(eventData.pageX, eventData.pageY);
+                        return e.stopPropagation();
+                    }
                 });
                 $container.on("touchend", function (e) {
 					if ((base.actionClick.action==true)&&(base.actionClick.x==base.currClick.x)&&(base.actionClick.y==base.currClick.y)){
@@ -232,6 +242,7 @@
 					}
                     e.preventDefault();
                     base._onMoveEnd();
+                    base.scroll=null;
                     return e.stopPropagation();
                 });
             }
