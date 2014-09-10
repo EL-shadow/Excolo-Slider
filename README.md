@@ -70,6 +70,12 @@ Examples can be seen on [our GitHub page](http://excolo.github.io/Excolo-Slider/
 
 Change Log
 ============
+2013-09-10 - **v1.1.3**
+
+* fix page scrolling on touch devices when finger start scrolling on slider ([EL-shadow](https://github.com/EL-shadow))
+* fix minor bug on iOs rotating ([EL-shadow](https://github.com/EL-shadow))
+* fix minor bug prev next button ([EL-shadow](https://github.com/EL-shadow))
+
 2013-11-07 - **v1.1.2**
 
 * resolve container left position overloading ([EL-shadow](https://github.com/EL-shadow))

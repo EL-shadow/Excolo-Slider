@@ -4,7 +4,7 @@
  *
  * Author: Nikolaj Dam Larsen v1.0.5
  * Author: Elnur Kurtaliev from v1.0.5
- * Version: 1.1.2 (07-November-2013)
+ * Version: 1.1.3 (10-September-2014)
  *
  * Released under the MIT license
  * https://github.com/EL-shadow/ExcoloSlider/blob/master/MIT-LICENSE
