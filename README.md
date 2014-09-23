@@ -60,12 +60,12 @@ $(function () {
 
 Configuration
 ============
-Configuration can be seen on [our GitHub page](http://excolo.github.io/Excolo-Slider/)
+Configuration can be seen on [our GitHub page](http://el-shadow.github.io/Excolo-Slider/)
 
 
 Examples
 ============
-Examples can be seen on [our GitHub page](http://excolo.github.io/Excolo-Slider/)
+Examples can be seen on [our GitHub page](http://el-shadow.github.io/Excolo-Slider/)
 
 
 Change Log
